@@ -5,27 +5,27 @@ Two tables that live in GitHub Actions, played by whoever turns up: [blackjack](
 ## Blackjack
 
 <!-- BLACKJACK:START -->
-<div align="center"><pre><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/label-dealer.svg" align="top" alt="dealer"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/7S.svg" align="top" alt="seven of spades"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/back.svg" align="top" alt="the dealer's hole card, face down"></a>
-<a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/label-you.svg" align="top" alt="you"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/3D.svg" align="top" alt="three of diamonds"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/7S.svg" align="top" alt="seven of spades"></a></pre></div>
+<div align="center"><pre><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/label-dealer.svg" align="top" alt="dealer"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/7S.svg" align="top" alt="seven of spades"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/9S.svg" align="top" alt="nine of spades"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/KC.svg" align="top" alt="king of clubs"></a>
+<a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/label-player.svg" align="top" alt="player"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/3D.svg" align="top" alt="three of diamonds"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/7S.svg" align="top" alt="seven of spades"></a><a href="https://github.com/0-draft/casino#blackjack"><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/AC.svg" align="top" alt="ace of clubs"></a></pre></div>
 
-<p align="center">The dealer shows seven, and you have 10.</p>
+<p align="center">Hand 12: the dealer busted with 26, @kanywst had soft 21, and it paid 1u. Pick a chip to deal hand 13.</p>
 
-<div align="center"><pre><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Chit+12&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/btn-hit.svg" align="top" alt="hit"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cstand+12&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/btn-stand.svg" align="top" alt="stand"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cdouble+12&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/btn-double.svg" align="top" alt="double"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Csurrender+12&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/btn-surrender.svg" align="top" alt="surrender"></a></pre></div>
+<div align="center"><pre><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cbet+1+13&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/chip1.svg" align="top" alt="bet 1 unit"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cbet+2+13&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/chip2.svg" align="top" alt="bet 2 units"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cbet+5+13&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/chip5.svg" align="top" alt="bet 5 units"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cbet+10+13&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/chip10.svg" align="top" alt="bet 10 units"></a><a href="https://github.com/0-draft/casino/issues/new?title=bj%7Cbet+25+13&body=Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."><img src="https://raw.githubusercontent.com/0-draft/casino/main/.github/cards/chip25.svg" align="top" alt="bet 25 units"></a></pre></div>
 
 <p align="center">Beat the dealer without going over 21. A click opens a prefilled issue: submit it and the table moves in about 30 seconds.</p>
 
-<p align="center">Shoe 1 · 4.8 decks left · out of it: 6 7 Q 7 8 7 8 2 2 Q T T 5 K K 7 9 3 3 J 9 3 7 7 · <a href="https://github.com/0-draft/casino/blob/main/.github/blackjack.json">all 62</a></p>
+<p align="center">Shoe 1 · 4.8 decks left · out of it: 7 8 7 8 2 2 Q T T 5 K K 7 9 3 3 J 9 3 7 7 A 9 K · <a href="https://github.com/0-draft/casino/blob/main/.github/blackjack.json">all 65</a></p>
 
-<p align="center">-3u over 11 hands · 1 player · 0u lost to mistakes</p>
+<p align="center">-2u over 12 hands · 1 player · 0.1u lost to mistakes</p>
 
 <table align="center">
   <thead>
     <tr><th>Hand</th><th>Player</th><th>Dealer</th><th></th></tr>
   </thead>
   <tbody>
+    <tr><td><code>12</code> <a href="https://github.com/kanywst" title="@kanywst">@kanywst</a></td><td>soft 21 (3 7 A)</td><td>26 bust (7 9 K)</td><td><code>+1u</code></td></tr>
     <tr><td><code>11</code> <a href="https://github.com/kanywst" title="@kanywst">@kanywst</a></td><td>22 bust (9 3 J)</td><td>12 (3 9)</td><td><code>-25u</code></td></tr>
     <tr><td><code>10</code> <a href="https://github.com/kanywst" title="@kanywst">@kanywst</a></td><td>20 (T K)</td><td>22 bust (5 K 7)</td><td><code>+25u</code></td></tr>
-    <tr><td><code>9</code> <a href="https://github.com/kanywst" title="@kanywst">@kanywst</a></td><td>21 (7 2 2 Q)</td><td>18 (8 T)</td><td><code>+25u</code></td></tr>
   </tbody>
 </table>
 
