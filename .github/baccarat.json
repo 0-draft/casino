@@ -9,30 +9,56 @@
    "4S",
    "KS",
    "8H",
-   "6H"
+   "6H",
+   "4H",
+   "7H",
+   "5D",
+   "5D"
   ],
   "number": 1,
   "road": [
    "B",
-   "B"
+   "B",
+   "P"
   ]
  },
- "hand": 3,
- "result": -0.050000000000000044,
- "hands_played": 2,
+ "hand": 4,
+ "result": 0.95,
+ "hands_played": 3,
  "coach": {
-  "cost": 0.0013408073105636298,
-  "bets": 2
+  "cost": 0.00244685964444602,
+  "bets": 3
  },
  "players": {
   "kanywst": {
-   "hands": 2,
-   "wagered": 2.0,
-   "net": -0.050000000000000044,
-   "cost": 0.0013408073105636298
+   "hands": 3,
+   "wagered": 3.0,
+   "net": 0.95,
+   "cost": 0.00244685964444602
   }
  },
  "recent": [
+  {
+   "number": 3,
+   "spot": "player",
+   "bet": 1.0,
+   "player": [
+    "4H",
+    "5D"
+   ],
+   "banker": [
+    "7H",
+    "5D"
+   ],
+   "outcome": "player",
+   "pairs": {
+    "player": false,
+    "banker": false
+   },
+   "net": 1.0,
+   "cost": 0.001106,
+   "by": "kanywst"
+  },
   {
    "number": 2,
    "spot": "player",

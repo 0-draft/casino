@@ -2,3 +2,4 @@ Baccarat played on github.com/0-draft/casino. Newest last.
 Hand, the bet, the player's cards and point, the banker's, the result (p and b mark a player or banker pair), what the bet paid, and who placed it.
       1  1u banker     |  P 7 5 2  |  B 3 6 9  |  banker  |  +0.95u  |  @kanywst
       2  1u player     |  P 7 K 7  |  B 4 8 6 8  |  banker  |  -1u  |  @kanywst
+      3  1u player     |  P 4 5 9  |  B 7 5 2  |  player  |  +1u  |  @kanywst
