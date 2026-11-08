@@ -6,3 +6,6 @@ __pycache__/
 # Screenshots taken while checking how the table renders. The art that ships is
 # .github/cards/*.svg and nothing here is ever part of it.
 /*.png
+
+# Local Claude Code settings for this checkout.
+/.claude/

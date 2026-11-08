@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 62" width="60" height="62" role="img" aria-label="player, won">
+  <rect width="60" height="62" fill="#1c5c43"/>
+  <text x="30.0" y="35.0" font-family="'Helvetica Neue',Helvetica,Arial,'Liberation Sans',sans-serif" font-size="9" font-weight="700" letter-spacing="1" fill="#e0b54a" text-anchor="middle" textLength="38" lengthAdjust="spacingAndGlyphs">PLAYER</text>
+  <rect x="2.25" y="2.25" width="55.5" height="57.5" fill="none" stroke="#e0b54a" stroke-width="3"/>
+</svg>

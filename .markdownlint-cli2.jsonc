@@ -8,12 +8,14 @@
     "MD036": false,
     "MD041": false,
     "MD060": false,
-    // The only raw HTML is the table between the BLACKJACK:START/END markers,
-    // written by .github/workflows/blackjack.yml via scripts/blackjack.py. The
-    // cards sit inside a pre: a table puts padding and a border around every
-    // cell, which would separate the felt each tile paints, and pre is the only
-    // element whose white-space survives GitHub's stripping of style. The hands
-    // played most recently are a table/code, since markdown cannot centre one
+    // The only raw HTML is the two tables, between the BLACKJACK:START/END
+    // and BACCARAT:START/END markers, written by .github/workflows/blackjack.yml
+    // and baccarat.yml via scripts/blackjack.py and scripts/baccarat.py. The
+    // cards, chips and bead plate sit inside a pre: a table puts padding and a
+    // border around every cell, which would separate the felt each tile paints,
+    // and pre is the only element whose white-space survives GitHub's stripping
+    // of style. The hands played most recently are a table/code, since markdown
+    // cannot centre one
     "MD033": {
       "allowed_elements": [
         "img",
