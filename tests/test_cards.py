@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tests for the blackjack table art.
+Tests for the table art, which both games draw from one generator.
 
 The table is drawn as one image per card, and a missing or wrongly sized file
 does not fail anything at render time — it ships a broken image to the page.
@@ -33,7 +33,28 @@ class Art(unittest.TestCase):
                      "label-you-sel", "label-player"}
         expected |= {f"chip{value}" for value in make_cards.CHIPS}
         expected |= {f"btn-{label}" for label in make_cards.BUTTONS}
+        expected |= {"bead-empty", "seat-player", "seat-banker",
+                     "seat-player-won", "seat-banker-won"}
+        expected |= {f"spot-{key}" for key in make_cards.SPOTS}
+        expected |= {f"bead-{o}{p}" for o in make_cards.OUTCOMES for p in make_cards.PAIRS}
         self.assertEqual({p.stem for p in svg_files()}, expected)
+
+    def test_every_image_either_table_names_is_drawn(self):
+        # The two renderers name their art by string, and both point at the
+        # one directory. A name only one of them uses, or a rename in the
+        # generator, would ship a broken image to that table alone.
+        import re
+        import baccarat
+        import blackjack
+        drawn = {p.stem for p in svg_files()}
+        pages = {game.__name__: game.render(game.blank_state())
+                 for game in (blackjack, baccarat)}
+        pages["README.md"] = (ROOT / "README.md").read_text(encoding="utf-8")
+        for name, page in pages.items():
+            named = set(re.findall(r"/\.github/cards/([^\"/]+)\.svg", page))
+            with self.subTest(name):
+                self.assertTrue(named)
+                self.assertLessEqual(named, drawn)
 
     def test_every_file_is_well_formed(self):
         for path in svg_files():
@@ -53,16 +74,21 @@ class Art(unittest.TestCase):
 
     def test_every_tile_paints_its_own_felt(self):
         # Left transparent, a tile takes the colour of GitHub's image
-        # placeholder, and a row of cards stops reading as one table.
+        # placeholder, and a row of cards stops reading as one table. The felt
+        # has to be the first thing painted and cover the whole tile.
         for path in svg_files():
             with self.subTest(path.name):
-                self.assertIn(f'fill="{make_cards.FELT}"', path.read_text(encoding="utf-8"))
+                root = ET.parse(path).getroot()
+                first = root.find("{http://www.w3.org/2000/svg}rect")
+                self.assertEqual(first.get("fill"), make_cards.FELT)
+                self.assertEqual((first.get("width"), first.get("height")),
+                                 (root.get("width"), root.get("height")))
 
     def test_the_cards_are_one_size_and_line_up_with_the_marker(self):
         heights = set()
         for path in svg_files():
             root = ET.parse(path).getroot()
-            if path.stem.startswith("label-") or len(path.stem) == 2 \
+            if path.stem.startswith(("label-", "seat-")) or len(path.stem) == 2 \
                     or path.stem in ("blank", "back", "slot"):
                 heights.add(root.get("height"))
         self.assertEqual(heights, {str(make_cards.H)})
@@ -89,14 +115,14 @@ class Art(unittest.TestCase):
     def test_everything_that_is_not_padding_says_what_it_is(self):
         # The table is images all the way down, so the alt text a reader hears
         # comes from the renderer, but a bare aria-label keeps the file honest
-        # when it is opened on its own. The two that pad a row out are felt and
-        # nothing else, and have nothing to say.
+        # when it is opened on its own. The tiles that only pad a row or the
+        # bead plate out are felt and nothing else, and have nothing to say.
         for path in svg_files():
             root = ET.parse(path).getroot()
             with self.subTest(path.name):
                 self.assertEqual(root.get("role"), "img")
                 label = root.get("aria-label")
-                if path.stem == "blank":
+                if path.stem in ("blank", "bead-empty"):
                     self.assertEqual(label, "")
                 else:
                     self.assertTrue(label)

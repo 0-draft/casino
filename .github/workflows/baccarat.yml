@@ -1,0 +1,154 @@
+name: Baccarat
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  # Outside the queue below, so a title that is not a bet never holds a slot in
+  # it. The queue keeps at most 100 runs waiting and cancels the rest without a
+  # word, and checking out and setting up Python takes a slot for half a minute;
+  # a burst of junk issues would otherwise push real bets out of it. The pattern
+  # is the one scripts/baccarat.py parses, and every chip link matches it.
+  gate:
+    if: startsWith(github.event.issue.title, 'bac|')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    outputs:
+      ok: ${{ steps.check.outputs.ok }}
+    steps:
+      - name: Is it a bet
+        id: check
+        env:
+          TITLE: ${{ github.event.issue.title }}
+          NUMBER: ${{ github.event.issue.number }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if ! [[ "$TITLE" =~ ^bac\|bet\ (player|banker|tie|ppair|bpair)\ (1|2|5|10|25)\ [0-9]{1,9}$ ]]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            gh issue close "$NUMBER" --comment "That is not a bet I can read. Click a chip on the table instead: https://github.com/0-draft/casino#baccarat"
+            exit 0
+          fi
+
+          # A well-formed bet still takes a slot, so one account filling the
+          # queue with them would hold the table. Each hand takes about 30
+          # seconds to come back, and someone playing in earnest waits for it
+          # to see the next chip, so six in three minutes is room to spare. This
+          # issue is one of those counted.
+          since=$(date -u -d '-3 minutes' +%Y-%m-%dT%H:%M:%SZ)
+          recent=$(gh api "repos/$GH_REPO/issues?creator=$AUTHOR&state=all&since=$since&per_page=100" \
+            --jq "[.[] | select(.pull_request == null) | select(.created_at >= \"$since\")] | length")
+          if [ "$recent" -gt 6 ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            gh issue close "$NUMBER" --comment "That is $recent bets in three minutes. Each hand takes about 30 seconds to come back; wait for the table, then click again."
+            exit 0
+          fi
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+
+  play:
+    needs: gate
+    if: needs.gate.outputs.ok == 'true'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+
+    # Every coup commits to README.md, so runs take turns.
+    # queue: max because the default, queue: single, cancels whichever run is
+    # already waiting — with three clicks in flight the middle one would be
+    # dropped and its issue left open. Declared on the job, not the workflow,
+    # so runs skipped by the `if:` above never take up a slot.
+    concurrency:
+      group: readme-write
+      queue: max
+
+    steps:
+      # ref: main because an `issues` event pins GITHUB_SHA to the commit that
+      # was head when the issue was opened. A run that waited in the queue would
+      # otherwise check out an old tree and its push would be rejected.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      - name: Deal the coup and push
+        id: hand
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_USER: ${{ github.event.issue.user.login }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # The delimiter is random because $GITHUB_OUTPUT is a shared file and
+          # a fixed one is guessable.
+          delim="HAND_$(openssl rand -hex 16)"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch --quiet origin main
+            git reset --quiet --hard origin/main
+
+            # Re-run against the refreshed table rather than replaying a diff:
+            # someone else's click may have landed while this one waited, and
+            # then this link is stale and is refused.
+            message="$(python scripts/baccarat.py)"
+
+            git add README.md .github/baccarat.json .github/baccarat-log.txt
+            if git diff --cached --quiet; then
+              break
+            fi
+            git commit --quiet -m "baccarat: hand played by @${ISSUE_USER}"
+
+            if git push --quiet; then
+              break
+            fi
+            # A push can be reported as failed after the server took it. If
+            # this commit is on main now, the coup was dealt: running again
+            # would read the next hand number and refuse the click as stale.
+            git fetch --quiet origin main
+            if git merge-base --is-ancestor HEAD origin/main; then
+              break
+            fi
+            if [ "$attempt" = 5 ]; then
+              echo "push kept losing the race" >&2
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
+
+          {
+            echo "message<<${delim}"
+            echo "${message}"
+            echo "${delim}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Close the issue
+        uses: peter-evans/close-issue@05dff7ca07116e5707cfb3a3cd4af7bb5e43524c # v3.0.2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment: |
+            ${{ steps.hand.outputs.message }}
+
+            The table is [here](https://github.com/0-draft/casino#baccarat). Thanks @${{ github.event.issue.user.login }}.
+
+      # The steps above carry an implicit success() gate, so a failed push
+      # closes no issue and posts no comment. Say so on the issue.
+      - name: Say so if it failed
+        if: failure()
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Something went wrong on my side. Check the table before clicking again — the hand may or may not have been dealt.

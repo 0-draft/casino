@@ -56,7 +56,7 @@ LOG_PATH = pathlib.Path(".github/blackjack-log.txt")
 START_MARKER = "<!-- BLACKJACK:START -->"
 END_MARKER = "<!-- BLACKJACK:END -->"
 
-REPO = "0-draft/blackjack"
+REPO = "0-draft/casino"
 ASSET = f"https://raw.githubusercontent.com/{REPO}/main/.github/cards"
 BODY = "Just+click+Submit+new+issue.+The+table+updates+in+about+30+seconds."
 
@@ -796,7 +796,7 @@ def append_log(state: dict, net: float, dealer: list[str]) -> None:
 
 
 def header() -> str:
-    return ("Blackjack played on github.com/0-draft/blackjack. Newest last.\n"
+    return ("Blackjack played on github.com/0-draft/casino. Newest last.\n"
             "Hand, bet, the player's cards, the dealer's, any insurance,"
             " what the table won, and who played it.\n"
             "A bet written a->b was doubled or split: a went down on the deal,"

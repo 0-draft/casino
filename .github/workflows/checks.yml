@@ -44,10 +44,16 @@ jobs:
           test -z "$(git status --porcelain .github/cards)" \
             || { echo "::error::scripts/make_cards.py writes files that are not committed"; exit 1; }
 
-      # The table in README.md is output too, drawn from .github/blackjack.json.
-      # A renderer change without a redraw ships a stale table.
-      - name: The table matches the state it is drawn from
+      # Both tables in README.md are output too, each drawn from its own state
+      # file. A renderer change without a redraw ships a stale table.
+      - name: The blackjack table matches the state it is drawn from
         run: |
           python -c "import sys; sys.path.insert(0, 'scripts'); import blackjack; blackjack.write_readme(blackjack.load_state())"
           git diff --exit-code --stat README.md \
             || { echo "::error::the BLACKJACK block is stale, redraw it from .github/blackjack.json"; exit 1; }
+
+      - name: The baccarat table matches the state it is drawn from
+        run: |
+          python -c "import sys; sys.path.insert(0, 'scripts'); import baccarat; baccarat.write_readme(baccarat.load_state())"
+          git diff --exit-code --stat README.md \
+            || { echo "::error::the BACCARAT block is stale, redraw it from .github/baccarat.json"; exit 1; }

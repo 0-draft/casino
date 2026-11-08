@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 44" width="84" height="44" role="img" aria-label="b pair, pays 11 to 1">
+  <rect width="84" height="44" fill="#1c5c43"/>
+  <rect x="3" y="4" width="78" height="36" rx="6" fill="none" stroke="#6f9784" stroke-width="1.2"/>
+  <text x="42.0" y="21" font-family="'Helvetica Neue',Helvetica,Arial,'Liberation Sans',sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#8fb3a0" text-anchor="middle" textLength="46" lengthAdjust="spacingAndGlyphs">B PAIR</text>
+  <text x="42.0" y="33" font-family="'Helvetica Neue',Helvetica,Arial,'Liberation Sans',sans-serif" font-size="8" font-weight="600" fill="#6f9784" text-anchor="middle" textLength="36" lengthAdjust="spacingAndGlyphs">11 TO 1</text>
+</svg>

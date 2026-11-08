@@ -1,0 +1,80 @@
+{
+ "shoe": {
+  "seen": [
+   "7D",
+   "3H",
+   "5S",
+   "6S",
+   "7H",
+   "4S",
+   "KS",
+   "8H",
+   "6H"
+  ],
+  "number": 1,
+  "road": [
+   "B",
+   "B"
+  ]
+ },
+ "hand": 3,
+ "result": -0.050000000000000044,
+ "hands_played": 2,
+ "coach": {
+  "cost": 0.0013408073105636298,
+  "bets": 2
+ },
+ "players": {
+  "kanywst": {
+   "hands": 2,
+   "wagered": 2.0,
+   "net": -0.050000000000000044,
+   "cost": 0.0013408073105636298
+  }
+ },
+ "recent": [
+  {
+   "number": 2,
+   "spot": "player",
+   "bet": 1.0,
+   "player": [
+    "7H",
+    "KS"
+   ],
+   "banker": [
+    "4S",
+    "8H",
+    "6H"
+   ],
+   "outcome": "banker",
+   "pairs": {
+    "player": false,
+    "banker": false
+   },
+   "net": -1.0,
+   "cost": 0.001341,
+   "by": "kanywst"
+  },
+  {
+   "number": 1,
+   "spot": "banker",
+   "bet": 1.0,
+   "player": [
+    "7D",
+    "5S"
+   ],
+   "banker": [
+    "3H",
+    "6S"
+   ],
+   "outcome": "banker",
+   "pairs": {
+    "player": false,
+    "banker": false
+   },
+   "net": 0.95,
+   "cost": 0.0,
+   "by": "kanywst"
+  }
+ ]
+}

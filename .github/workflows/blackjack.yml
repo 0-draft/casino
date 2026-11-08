@@ -94,7 +94,7 @@ jobs:
           comment: |
             ${{ steps.hand.outputs.message }}
 
-            The table is [here](https://github.com/0-draft/blackjack#blackjack). Thanks @${{ github.event.issue.user.login }}.
+            The table is [here](https://github.com/0-draft/casino#blackjack). Thanks @${{ github.event.issue.user.login }}.
 
       # Without this the player is told nothing at all: the steps above carry an
       # implicit success() gate, so a failed push closes no issue and posts no
