@@ -18,6 +18,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Nothing here pushes, so the token has no reason to stay in .git.
+          persist-credentials: false
 
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
@@ -31,7 +34,9 @@ jobs:
         run: python -m unittest discover -s tests -v
 
       - name: Markdown
-        run: npx --yes markdownlint-cli2 "**/*.md"
+        # Pinned like the actions are: npx would otherwise run whatever version
+        # was published last, on every pull request.
+        run: npx --yes markdownlint-cli2@0.24.0 "**/*.md"
 
       # The table art is committed output. Nothing regenerates it on a deal, so
       # an edit to the generator without a rerun leaves the table pointing at
