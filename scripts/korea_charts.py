@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import sys
 import textwrap
+from math import exp, lgamma, log
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -218,6 +219,25 @@ def baccarat_edges(decks: int = 8) -> list[tuple[str, str, float]]:
         ("Player / Banker Pair", "11 : 1", pair * 11 - (1 - pair)),
     ]
     return [(name, pays, -ev) for name, pays, ev in rows]
+
+
+def ahead_chance(spot: str, hands: int, decks: int = 8) -> float:
+    """P(strictly ahead) after `hands` flat bets of one unit on Banker (paying
+    0.95) or Player, summed exactly over how many coups were won, lost and
+    tied. The coups are taken as independent draws from a full shoe, which is
+    what a flat bettor who ignores the shoe is facing on average."""
+    pw, bw, tw = bacmath.outcomes(bacmath.full_comp(bacmath.Rules(decks=decks)))
+    win, lose, pay = (bw, pw, 0.95) if spot == "banker" else (pw, bw, 1.0)
+    total = 0.0
+    for w in range(hands + 1):
+        for lost in range(hands - w + 1):
+            if pay * w - lost <= 1e-9:
+                continue
+            t = hands - w - lost
+            log_p = (lgamma(hands + 1) - lgamma(w + 1) - lgamma(lost + 1) - lgamma(t + 1)
+                     + w * log(win) + lost * log(lose) + t * log(tw))
+            total += exp(log_p)
+    return total
 
 
 # --------------------------------------------------------------------------
@@ -470,5 +490,15 @@ def write(slugs=None) -> list[Path]:
     return written
 
 
+def print_ahead_table() -> None:
+    """The table in guide/korea/README.md: python scripts/korea_charts.py ahead"""
+    for n in (1, 10, 100, 300, 1000):
+        print(f"| {n} | {ahead_chance('player', n) * 100:.1f}% | {ahead_chance('banker', n) * 100:.1f}% |")
+
+
 if __name__ == "__main__":
-    write(set(sys.argv[1:]) or None)
+    args = set(sys.argv[1:])
+    if args == {"ahead"}:
+        print_ahead_table()
+    else:
+        write(args or None)

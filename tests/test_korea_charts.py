@@ -58,10 +58,29 @@ class NoHoleCard(unittest.TestCase):
         self.assertLess(late, -0.5)
 
     def test_fourteen_against_a_ten_turns_on_the_surrender_kind(self):
-        # The research's Wizard-derived chart: 14 v T surrenders only when the
-        # half bet is safe from the natural.
+        # 14 v T surrenders only when the half bet is safe from the natural,
+        # as Wizard of Odds' ENHC 6D H17 EV table has it.
         self.assertEqual(k.decide(ENHC_EARLY, "hard", 14, 10), "Rh")
         self.assertEqual(k.decide(ENHC_LATE, "hard", 14, 10), "H")
+
+    def test_seven_seven_against_a_ten_turns_on_it_too(self):
+        early = k.Table("early", "early", H17._replace(max_splits=2), hole_card=False,
+                        surrender="early")
+        late = k.Table("late", "late", H17._replace(max_splits=2), hole_card=False,
+                       surrender="late")
+        self.assertEqual(k.decide(early, "pair", 7, 10), "Rh")
+        self.assertEqual(k.decide(late, "pair", 7, 10), "H")
+
+    def test_the_cells_the_guide_says_change_at_s17(self):
+        s17 = k.Table("s17", "s17", H17._replace(hit_soft_17=False), hole_card=True,
+                      surrender="late")
+        for kind, what, up, h17, stand17 in (("soft", 18, 2, "Ds", "S"),
+                                            ("soft", 19, 6, "Ds", "S"),
+                                            ("hard", 11, 1, "D", "H")):
+            with self.subTest(hand=(kind, what), up=up):
+                self.assertEqual(k.decide(PEEK, kind, what, up), h17)
+                self.assertEqual(k.decide(s17, kind, what, up), stand17)
+
 
 
 class Baccarat(unittest.TestCase):
@@ -78,6 +97,13 @@ class Baccarat(unittest.TestCase):
         for key, value in want.items():
             with self.subTest(bet=key):
                 self.assertAlmostEqual(edges[key], value, places=6)
+
+    def test_the_guide_table_of_finishing_ahead(self):
+        # guide/korea/README.md quotes these.
+        self.assertAlmostEqual(k.ahead_chance("player", 1), 0.4462, places=4)
+        self.assertAlmostEqual(k.ahead_chance("banker", 1), 0.4586, places=4)
+        self.assertAlmostEqual(k.ahead_chance("player", 10), 0.412, places=3)
+        self.assertAlmostEqual(k.ahead_chance("banker", 100), 0.447, places=3)
 
 
 if __name__ == "__main__":

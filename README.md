@@ -116,7 +116,7 @@ Both tables are drawn from one set of images in `.github/cards`: the deck, the e
 
 ## Strategy cards for Korea
 
-[guide/korea](guide/korea/README.md) has blackjack and baccarat strategy cards for the foreigner casinos in Korea (Paradise City and INSPIRE in Incheon, plus Seoul and Busan), in Japanese. `scripts/korea_charts.py` prices every cell with `bjmath` for each venue's rules, including the no-hole-card game, where a dealer blackjack takes doubles and splits too, and prices the baccarat bets with `bacmath`.
+[guide/korea](guide/korea/README.md) is a Japanese guide to the foreigner casinos in Korea. It has blackjack strategy cards for Paradise City and INSPIRE in Incheon and a baccarat card; the Seoul and Busan casinos get venue notes only. `scripts/korea_charts.py` prices every cell with `bjmath` for each venue's rules, including the no-hole-card game, where a dealer blackjack takes doubles and splits too (confirmed for Paradise City, assumed for INSPIRE), and prices the baccarat bets with `bacmath`.
 
 ## History
 
