@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="466" viewBox="0 0 520 466">
+<rect width="520" height="466" rx="12" fill="#3b0f17"/>
+<text x="16" y="32" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">Baccarat: which spot to bet</text>
+<text x="16" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#e8cdd2">8 decks, punto banco · house edge per unit bet, lower is better</text>
+<text x="16" y="84" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#e8cdd2">BET</text>
+<text x="250" y="84" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#e8cdd2">PAYS</text>
+<text x="504" y="84" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#e8cdd2" text-anchor="end">HOUSE EDGE</text>
+<rect x="8" y="96" width="504" height="36" rx="6" fill="#ffffff" fill-opacity="0.06"/>
+<rect x="250" y="126" width="18.1" height="4" rx="2" fill="#3fb871"/>
+<text x="18" y="119" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Banker</text>
+<text x="250" y="116" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#e8cdd2">0.95 : 1</text>
+<text x="502" y="119" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#3fb871" text-anchor="end">1.06%</text>
+<rect x="8" y="136" width="504" height="36" rx="6" fill="#ffffff" fill-opacity="0.06"/>
+<rect x="250" y="166" width="21.2" height="4" rx="2" fill="#3fb871"/>
+<text x="18" y="159" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Player</text>
+<text x="250" y="156" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#e8cdd2">1 : 1</text>
+<text x="502" y="159" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#3fb871" text-anchor="end">1.24%</text>
+<rect x="8" y="176" width="504" height="36" rx="6" fill="#ffffff" fill-opacity="0.06"/>
+<rect x="250" y="206" width="25.0" height="4" rx="2" fill="#e0b13c"/>
+<text x="18" y="199" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Banker (no commission)</text>
+<text x="250" y="196" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#e8cdd2">1 : 1, 6 pays 1 : 2</text>
+<text x="502" y="199" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#e0b13c" text-anchor="end">1.46%</text>
+<rect x="8" y="216" width="504" height="36" rx="6" fill="#ffffff" fill-opacity="0.06"/>
+<rect x="250" y="246" width="246.0" height="4" rx="2" fill="#e05a5a"/>
+<text x="18" y="239" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Tie</text>
+<text x="250" y="236" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#e8cdd2">8 : 1</text>
+<text x="502" y="239" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#e05a5a" text-anchor="end">14.36%</text>
+<rect x="8" y="256" width="504" height="36" rx="6" fill="#ffffff" fill-opacity="0.06"/>
+<rect x="250" y="286" width="177.5" height="4" rx="2" fill="#e05a5a"/>
+<text x="18" y="279" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Player / Banker Pair</text>
+<text x="250" y="276" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#e8cdd2">11 : 1</text>
+<text x="502" y="279" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#e05a5a" text-anchor="end">10.36%</text>
+<text x="16" y="318" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff">Commission table (banker pays 0.95): bet Banker.</text>
+<text x="16" y="340" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff">No-commission table (banker 6 pays half): bet Player.</text>
+<text x="16" y="362" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff">Tie and pairs are 10% to 15%. Lucky 6 / Super 6 are worse.</text>
+<text x="16" y="384" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff">Roadmaps and streaks predict nothing: every coup is a fresh draw.</text>
+<text x="16" y="406" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff">A tie pushes Banker and Player bets: the stake comes back.</text>
+<text x="16" y="434" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#b98a93">Every edge computed by scripts/korea_charts.py (bacmath, exact from a full shoe)</text>
+</svg>

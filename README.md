@@ -114,6 +114,10 @@ Baccarat: `scripts/bacmath.py` is the drawing rules and the exact odds of every 
 
 Both tables are drawn from one set of images in `.github/cards`: the deck, the empty slot, the felt padding and the chips are shared, and each game adds its own (the face-down card and buttons for blackjack, the bet spots and bead plate for baccarat). `scripts/make_cards.py` draws all of them, and the images are committed rather than generated on each hand, so `.github/workflows/checks.yml` regenerates them on every pull request and fails if the committed art no longer matches its generator. It does the same for both tables, redrawing each from its state file.
 
+## Strategy cards for Korea
+
+[guide/korea](guide/korea/README.md) is a Japanese guide to the foreigner casinos in Korea. It has blackjack strategy cards for Paradise City and INSPIRE in Incheon and a baccarat card; the Seoul and Busan casinos get venue notes only. `scripts/korea_charts.py` prices every cell with `bjmath` for each venue's rules, including the no-hole-card game, where a dealer blackjack takes doubles and splits too (confirmed for Paradise City, assumed for INSPIRE), and prices the baccarat bets with `bacmath`.
+
 ## History
 
 Blackjack moved out of the [kanywst/kanywst](https://github.com/kanywst/kanywst) profile README on 2026-10-02, with the shoe and the scores as they stood, and lived in 0-draft/blackjack, which was renamed to this repository. Baccarat started in [0-draft/baccarat](https://github.com/0-draft/baccarat) and was merged in here on 2026-11-08 with its shoe, scores and log; the hands played there are still in that repository's issues.
